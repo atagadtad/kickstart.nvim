@@ -207,6 +207,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Remove row numbers in terminal view
 vim.api.nvim_create_autocmd('TermOpen', {
   group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
   callback = function()
@@ -215,6 +216,8 @@ vim.api.nvim_create_autocmd('TermOpen', {
   end,
 })
 
+-- Key map to create, open and focus into a terminal window
+-- Setting the height to 15
 vim.keymap.set('n', '<leader>st', function()
   vim.cmd.vnew()
   vim.cmd.term()
@@ -753,6 +756,22 @@ require('lazy').setup({
     },
   },
 
+  {
+    {
+      'stevearc/oil.nvim',
+      opts = {},
+      -- Optional dependencies
+      dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+      -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+    },
+  },
+
+  {
+    'm4xshen/hardtime.nvim',
+    dependencies = { 'MunifTanjim/nui.nvim' },
+    opts = {},
+  },
+
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
@@ -880,7 +899,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-moon'
+      vim.cmd.colorscheme 'tokyonight-night'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
