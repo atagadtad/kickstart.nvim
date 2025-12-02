@@ -667,7 +667,29 @@ require('lazy').setup({
 
       require('lspconfig').ts_ls.setup {}
       require('lspconfig').jsonls.setup {}
+      require('lspconfig').clangd.setup {
+        cmd = {
+          'clangd',
+          '--query-driver=C:\\Users\\atagadtad\\scoop\\apps\\mingw\\current\\bin',
+        },
+        filetypes = { 'c', 'cpp' },
+      }
 
+      require('lspconfig').rust_analyzer.setup {
+        cmd = {
+          'C:\\Users\\atagadtad\\scoop\\apps\\rustup\\current\\.cargo\\bin\\rust-analyzer.EXE',
+        },
+        settings = {
+          ['rust-analyzer'] = {
+            rustcSource = 'discover',
+            cargo = { allFeatures = true },
+            diagnostics = {
+              enable = false,
+            },
+            checkOnSave = { command = 'clippy' },
+          },
+        },
+      }
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
       --  other tools, you can run
